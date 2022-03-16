@@ -1,0 +1,26 @@
+{
+  "name": "cruise-ships",
+  "version": "1.0.0",
+  "description": "Cruise Ship JS Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrissyelwes/cruise-ships.git"
+  },
+  "keywords": [
+    "cruise",
+    "ship"
+  ],
+  "author": "Chrissy Elwes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chrissyelwes/cruise-ships/issues"
+  },
+  "homepage": "https://github.com/Chrissyelwes/cruise-ships#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
