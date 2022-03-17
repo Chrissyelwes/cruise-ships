@@ -1,11 +1,17 @@
-function Ship(name, port) {
-    this.name = name;
-    this.startingPort = port;
-};
+const currentPort = require("../src/Port");
+
+function Ship(port) {
+    this.currentPort = port;
+
 
 Ship.prototype.setSail = function () {
-    this.startingPort === false;
+    this.currentPort === null;
     };
 
+Ship.prototype.dock = function (port) {
+    this.currentPort = port;
+
+};
+};
 
 module.exports = Ship;

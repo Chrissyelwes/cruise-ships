@@ -1,27 +1,28 @@
-const Ship = require("../src/Ship");
+const Ship = require("../src/Ship.js");
+const Port = require("../src/Port.js");
 
 describe('Ship', () => {
-    it('returns an object', () => {
-        expect(new Ship('Violyn')).toBeInstanceOf(Object);
-    });
-    it('sets the name property', () => {
-        const ship = new Ship('Violyn');
-    
-        expect(ship.name).toEqual('Violyn');
-    });
-    it('sets the startingPort property', () => {
-        const ship = new Ship('Violyn', 'Piltover');
+    const port = new Port('Zaun');
+    const violyn = new Ship(port);
 
-        expect(ship.startingPort).toEqual('Piltover');
+    it('returns an object', () => {
+        expect(new Ship()).toBeInstanceOf(Object);
+    });
+
+    it('has a starting port', () => {
+    
+        expect(violyn.currentPort).toBe(port);
     });
 });
 
 describe('setSail', () => {
-    it('lets ship sail from startingPort', () => {
-        const ship = new Ship('Violyn');
+    const port = new Port('Zaun');
+    const violyn = new Ship();
 
-        ship.setSail();
+    it('lets ship sail', () => {
 
-        expect(ship.startingPort).toBeFalsy();
+        violyn.setSail();
+
+        expect(violyn.currentPort).toBeFalsy();
     });
 });
