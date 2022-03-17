@@ -15,3 +15,13 @@ describe('Ship', () => {
         expect(ship.startingPort).toEqual('Piltover');
     });
 });
+
+describe('setSail', () => {
+    it('lets ship sail from startingPort', () => {
+        const ship = new Ship('Violyn');
+
+        ship.setSail();
+
+        expect(ship.startingPort).toBeFalsy();
+    });
+});
