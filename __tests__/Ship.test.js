@@ -25,12 +25,13 @@ describe('setSail', () => {
         const zaun = new Port('Zaun');
         const piltover = new Port('Piltover');
         const itinerary = new Itinerary([zaun,piltover]);
-        const violyn = new Ship(itinerary);
+        const ship = new Ship(itinerary);
 
-        violyn.setSail();
+        ship.setSail();
 
-        expect(violyn.currentPort).toBeFalsy();
-        // expect(violyn.previousPort).toBe(port);
+        expect(ship.currentPort).toBeFalsy();
+        expect(zaun.ships).not.toContain(ship);
+
     });
     it('cannot set sail further than the last index in the itinerary', () => {
         const zaun = new Port('Zaun');
@@ -50,11 +51,20 @@ describe('Dock', () => {
         const zaun = new Port('Zaun');
         const piltover = new Port('Piltover');
         const itinerary = new Itinerary([zaun,piltover]);
-        const violyn = new Ship(itinerary);
+        const ship = new Ship(itinerary);
 
-        violyn.setSail()
-        violyn.dock()
+        ship.setSail()
+        ship.dock()
 
-        expect(violyn.currentPort).toBe(piltover);
+        expect(ship.currentPort).toBe(piltover);
+        expect(piltover.ships).toContain(ship);
+    });
+
+    it('gets added to Port on instantiation', () => {
+        const zaun = new Port('Zaun');
+        const itinerary = new Itinerary([zaun]);
+        const ship = new Ship(itinerary);
+
+        expect(zaun.ships).toContain(ship);
     });
 });

@@ -12,3 +12,28 @@ describe('Port', () => {
         expect(port.portName).toEqual('Zaun');
     });
 });
+
+describe('addShip', () => {
+    it('adds a Ship that docks at Port', () => {
+        const port = new Port('Zaun');
+        const ship = {};
+
+        port.addShip(ship);
+
+        expect(port.ships).toContain(ship);
+    });
+});
+
+describe('removeShip', () => {
+    it('removes a Ship from a Port', () => {
+        const port = new Port('Zaun');
+        const violyn = {};
+        const jaymel = {};
+
+        port.addShip(violyn);
+        port.addShip(jaymel);
+        port.removeShip(jaymel);
+
+        expect(port.ships).not.toContain(jaymel);
+    });
+});
