@@ -22,7 +22,10 @@ describe('Ship', () => {
                 ships: []
             };
 
-            itinerary = new Itinerary([zaun,piltover]);
+            itinerary = {
+                ports: [zaun, piltover]
+            };
+
             ship = new Ship(itinerary);
         });
 
@@ -53,6 +56,9 @@ describe('Ship', () => {
     });
    
     it('can dock at a different port', () => {
+        itinerary = {
+            ports: [zaun, piltover]
+        };
 
         ship.setSail()
         ship.dock()
