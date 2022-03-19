@@ -23,7 +23,7 @@ describe('Port', () => {
          });
 
     it('adds a Ship that docks at Port', () => {
-        const ship = {}
+        const ship = jest.fn();
 
         port.addShip(ship);
 
@@ -31,8 +31,8 @@ describe('Port', () => {
     });
 
     it('removes a Ship from a Port', () => {
-        const violyn = {}
-        const jaymel = {}
+        const violyn = jest.fn();
+        const jaymel = jest.fn();
 
         port.addShip(violyn);
         port.addShip(jaymel);
