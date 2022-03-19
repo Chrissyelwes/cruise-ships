@@ -4,14 +4,24 @@ const Itinerary = require("../src/Itinerary");
 
 describe('Ship', () => {
     describe('with ports and an itinerary', () => {
-        let ship;
         let zaun;
         let piltover;
-        let itinerary;
 
         beforeEach(() => {
-            zaun = new Port('Zaun');
-            piltover = new Port('Piltover');
+            zaun = {
+                addShip: jest.fn(),
+                removeShip: jest.fn(),
+                name: 'Zaun',
+                ships: []
+            };
+
+            piltover = {
+                addShip: jest.fn(),
+                removeShip: jest.fn(),
+                name: 'Piltover',
+                ships: []
+            };
+
             itinerary = new Itinerary([zaun,piltover]);
             ship = new Ship(itinerary);
         });
@@ -30,7 +40,7 @@ describe('Ship', () => {
         ship.setSail();
 
         expect(ship.currentPort).toBeFalsy();
-        expect(zaun.ships).not.toContain(ship);
+        expect(zaun.removeShip).toHaveBeenCalledWith(ship);
 
     });
 
@@ -48,12 +58,12 @@ describe('Ship', () => {
         ship.dock()
 
         expect(ship.currentPort).toBe(piltover);
-        expect(piltover.ships).toContain(ship);
+        expect(piltover.addShip).toHaveBeenCalledWith(ship);
     });
 
     it('gets added to Port on instantiation', () => {
 
-        expect(zaun.ships).toContain(ship);
+        expect(zaun.addShip).toHaveBeenCalledWith(ship);
     });
 });
 });
