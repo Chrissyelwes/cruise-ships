@@ -3,29 +3,29 @@ const Port = require("../src/Port.js");
 const Itinerary = require("../src/Itinerary");
 
 describe('Ship', () => {
-    it('returns an object', () => {
-        const port = new Port('Zaun');
-        const itinerary = new Itinerary([port]);
-        const violyn = new Ship(itinerary);
+    describe('with ports and an itinerary', () => {
+        let ship;
+        let zaun;
+        let piltover;
+        let itinerary;
 
-        expect(violyn).toBeInstanceOf(Object);
-    });
+        beforeEach(() => {
+            zaun = new Port('Zaun');
+            piltover = new Port('Piltover');
+            itinerary = new Itinerary([zaun,piltover]);
+            ship = new Ship(itinerary);
+        });
+
+        it('can be instantiated', () => {
+            expect(ship).toBeInstanceOf(Object);
+        });
 
     it('has a starting port', () => {
-        const port = new Port('Zaun');
-        const itinerary = new Itinerary([port]);
-        const violyn = new Ship(itinerary);
-    
-        expect(violyn.currentPort).toBe(port);
-    });
-});
 
-describe('setSail', () => {
+        expect(ship.currentPort).toBe(zaun);
+    });
+
     it('lets ship sail', () => {
-        const zaun = new Port('Zaun');
-        const piltover = new Port('Piltover');
-        const itinerary = new Itinerary([zaun,piltover]);
-        const ship = new Ship(itinerary);
 
         ship.setSail();
 
@@ -33,25 +33,16 @@ describe('setSail', () => {
         expect(zaun.ships).not.toContain(ship);
 
     });
+
     it('cannot set sail further than the last index in the itinerary', () => {
-        const zaun = new Port('Zaun');
-        const piltover = new Port('Piltover');
-        const itinerary = new Itinerary([zaun,piltover]);
-        const violyn = new Ship(itinerary);
 
-        violyn.setSail();
-        violyn.dock();
+        ship.setSail();
+        ship.dock();
 
-        expect(() => violyn.setSail()).toThrowError('Reached end of itinerary');
+        expect(() => ship.setSail()).toThrowError('Reached end of itinerary');
     });
-});
-
-describe('Dock', () => {
+   
     it('can dock at a different port', () => {
-        const zaun = new Port('Zaun');
-        const piltover = new Port('Piltover');
-        const itinerary = new Itinerary([zaun,piltover]);
-        const ship = new Ship(itinerary);
 
         ship.setSail()
         ship.dock()
@@ -61,10 +52,8 @@ describe('Dock', () => {
     });
 
     it('gets added to Port on instantiation', () => {
-        const zaun = new Port('Zaun');
-        const itinerary = new Itinerary([zaun]);
-        const ship = new Ship(itinerary);
 
         expect(zaun.ships).toContain(ship);
     });
+});
 });

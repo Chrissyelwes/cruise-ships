@@ -1,4 +1,5 @@
 const currentPort = require("../src/Port");
+const itinerary = require("../src/Itinerary");
 
 function Ship(itinerary) {
     this.itinerary = itinerary;
@@ -15,9 +16,8 @@ Ship.prototype.setSail = function () {
         throw new Error('Reached end of itinerary');
     }
     
-    this.currentPort.removeShip(this);
-
     this.previousPort = this.currentPort; 
+    this.currentPort.removeShip(this);
     this.currentPort = null;
 
     };
