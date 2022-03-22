@@ -2,10 +2,14 @@ const Ship = require("../src/Ship.js");
 const Port = require("../src/Port.js");
 const Itinerary = require("../src/Itinerary");
 
+
+
 describe('Ship', () => {
     describe('with ports and an itinerary', () => {
         let zaun;
         let piltover;
+        let ship;
+        let itinerary;
 
         beforeEach(() => {
             zaun = {
@@ -33,8 +37,11 @@ describe('Ship', () => {
             expect(ship).toBeInstanceOf(Object);
         });
 
-    it('has a starting port', () => {
+    it('gets added to Port on instantiation', () => {
+        expect(zaun.addShip).toHaveBeenCalledWith(ship);
+    });
 
+    it('has a starting port', () => {
         expect(ship.currentPort).toBe(zaun);
     });
 
@@ -60,16 +67,11 @@ describe('Ship', () => {
             ports: [zaun, piltover]
         };
 
-        ship.setSail()
+        ship.setSail();
         ship.dock()
 
         expect(ship.currentPort).toBe(piltover);
         expect(piltover.addShip).toHaveBeenCalledWith(ship);
-    });
-
-    it('gets added to Port on instantiation', () => {
-
-        expect(zaun.addShip).toHaveBeenCalledWith(ship);
     });
 });
 });

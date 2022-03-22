@@ -5,20 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cruise Ship Ahoy!</title>
+
+     <!-- //////////////////////////////////////////
+    ////////////  LINKED CSS FILES ////////////////////////
+    ////////////////////////////////////////////// -->
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 <body>
     <div id="viewport">
-
+        <div id="ports">
+        </div>
     </div>
-    
+
+<!-- //////////////////////////////////////////
+////////////  SCRIPTS ////////////////////////
+////////////////////////////////////////////// -->
+
     <script src="src/controller.js"></script>
     <script src="src/Port.js"></script>
+    <script src="src/Itinerary.js"></script>
+    <script src="src/Ship.js"></script>
 
     <script>
         const controller = new Controller();
+        const itinerary = new Itinerary([
+        new Port('Zaun'),
+        new Port('Piltover'),
+        new Port('Noxus'),
+        new Port('Ionia')
+        ]);
+        
+        controller.renderPorts(itinerary.ports);  
     </script>
 </body>
 </html>

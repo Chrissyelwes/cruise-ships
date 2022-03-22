@@ -1,14 +1,21 @@
-function Port(name) {
-    this.portName = name;
-    this.ships = []
-
-    Port.prototype.addShip = function (ship) {
-       this.ships.push(ship);
+(function exportPort() {
+    function Port(name) {
+        this.portName = name;
+        this.ships = [];
     }
 
-    Port.prototype.removeShip = function (ship) {
-        this.ships.splice(this.ships.indexOf(ship), 1);
+    Port.prototype = {
+        addShip(ship) {
+            this.ships.push(ship);
+        },
+        removeShip(ship) {
+           this.ships = this.ships.filter(dockedShip => dockedShip !== ship);
+        },
     };
-};
 
-module.exports = Port;
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = Port;
+    } else {
+        window.Port = Port;
+    }
+    }());
