@@ -26,5 +26,5 @@ body {
 #ports > .port {
     width: 64px;
     height: 32px;
-    background-image: url(images/port.png);
+    background-image: url('images/port.png');
 }
